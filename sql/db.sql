@@ -1,16 +1,14 @@
-mydbconf {
-    poolName = "quill"
-    maximumPoolSize = 5
-    connectionTimeout = 30000
-    transactionIsolation = TRANSACTION_SERIALIZABLE
-    dataSourceClassName = org.postgresql.ds.PGSimpleDataSource
-    dataSource {
-            url = "jdbc:postgresql://localhost:5432/demodb"
-            url = ${?DATABASE_JDBC_URL}
-        user = "docker"
-        user = ${?DATABASE_USER}
-        password = "docker"
-        password = ${?DATABASE_PASS}
-    }
+CREATE DATABASE reivewboard;
+\c reivewboard;
 
-}
+CREATE TABLE IF NOT EXISTS companies (
+    id BIGSERIAL PRIMARY KEY,
+    slug TEXT UNIQUE NOT NULL,
+    name TEXT UNIQUE NOT NULL,
+    url TEXT UNIQUE NOT NULL,
+    location TEXT,
+    country TEXT,
+    industry TEXT,
+    image TEXT,
+    tags TEXT[]
+);
