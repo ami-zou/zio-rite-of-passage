@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0merror while loading ElementType,[0m
+[0m[[0m[31merror[0m] [0m[0mclass file /modules/java.base/java/lang/annotation/ElementType.class is broken, reading aborted with class java.lang.RuntimeException[0m
+[0m[[0m[31merror[0m] [0m[0mbad constant pool index: 0 at pos: 1220[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

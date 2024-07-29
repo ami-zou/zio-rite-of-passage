@@ -1,0 +1,21 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(__runWatch console0, Some(a33f441d-081c-4fff-b79b-8e991a0b55ce), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(sbtStashOnFailure, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(__preWatch console0, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(Test / compile, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: foundations / Test / compile, server / Test / compile, Test / compile[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /Users/azou/Documents/zio-rite-of-passage/modules/server/target/scala-3.3.0/test-classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E019] Syntax Error: /Users/azou/Documents/zio-rite-of-passage/modules/server/src/test/scala/com/rockthejvm/reviewboard/repositories/CompanyRepositorySpec.scala:7:17 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m7 |[0m  [33moverride[0m [33mdef[0m sp[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                 ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m                 Missing return type[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m(server / Test / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 0 s, completed Jul 29, 2024, 12:49:02 PM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(resumeFromFailure, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(sbtPopOnFailure, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(__postWatch console0, None, Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(resumeFromFailure, None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(__waitWatch console0, None, None)[0m
