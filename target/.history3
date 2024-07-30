@@ -36,3 +36,6 @@
 1722367251833:testOnly com.rockthejvm.reviewboard.services.ReviewServiceSpec
 1722367270185:Test / compile
 1722367271624:testOnly com.rockthejvm.reviewboard.services.ReviewServiceSpec
+1722367964384:Test / compile
+1722367970418:compile
+1722369895208:Test / compile
