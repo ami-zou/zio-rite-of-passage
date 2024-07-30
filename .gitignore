@@ -1,4 +1,3 @@
-.idea
-.bsp
-modules/server/target
-target
+.idea/
+.bsp/
+**/target/
