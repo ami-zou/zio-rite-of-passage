@@ -1,7 +1,7 @@
 package com.rockthejvm.reviewboard.http.requests
 
 import com.rockthejvm.reviewboard.domain.data.Company
-import zio.json.{DeriveJsonCodec, JsonCodec}
+import zio.json.*
 
 final case class CreateCompanyRequest(
     slug: String,

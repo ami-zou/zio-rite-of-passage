@@ -17,4 +17,22 @@ trait CompanyEndpoints {
       .post
       .in(jsonBody[CreateCompanyRequest])
       .out(jsonBody[Company])
+
+  val getAllEndpoints =
+    endpoint
+      .tag("companies")
+      .name("getAll")
+      .description("get all listings of a company")
+      .in("companies")
+      .get
+      .out(jsonBody[List[Company]])
+
+  val getByIdEndpoint =
+    endpoint
+      .tag("companies")
+      .name("getById")
+      .description("get a listing of a company")
+      .in("companies" / path[String]("id"))
+      .get
+      .out(jsonBody[Option[Company]])
 }
