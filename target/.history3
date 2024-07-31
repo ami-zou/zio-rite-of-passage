@@ -45,3 +45,6 @@
 1722445670609:compile
 1722445673071:Test / compile
 1722445674926:testOnly com.rockthejvm.reviewboard.http.controllers.ReviewControllerSpec
+1722446092890:~compile
+1722446183834:runApplication server
+1722446211906:project server

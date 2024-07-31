@@ -1,3 +1,15 @@
 package com.rockthejvm.reviewboard.http.endpoints
 
-trait HealthEndpoint {}
+import sttp.tapir.*
+import sttp.tapir.server.ziohttp.*
+import zio.*
+
+trait HealthEndpoint {
+  val healthEndpoint = endpoint
+    .tag("health")
+    .name("health")
+    .description("health check")
+    .get
+    .in("health")
+    .out(plainBody[String])
+}
