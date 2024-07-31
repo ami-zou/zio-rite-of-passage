@@ -1,5 +1,16 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /Users/azou/Documents/zio-rite-of-passage/modules/server/src/main/scala/com/rockthejvm/reviewboard/http/controllers/CompanyController.scala:10:76 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m10 |[0m    ZIO.service[[35mCompanyService[0m].map([36mcompanyService[0m => [33mnew[0m [35mCompanyController[0m(companyService))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                            ^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mtoo many arguments for [33mconstructor[0m [35mCompanyController[0m in [33mclass[0m [35mCompanyController[0m: (): com.rockthejvm.reviewboard.http.controllers.CompanyController[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /Users/azou/Documents/zio-rite-of-passage/modules/server/src/main/scala/com/rockthejvm/reviewboard/http/HttpApi.scala:14:41 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m14 |[0m  [33mval[0m [36mendpointsZIO[0m = makeControllers.map(gatherRoutes)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                         ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    List[com.rockthejvm.reviewboard.http.controllers.[1m[31mBaseController[0m] =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  List[sttp.tapir.server.ServerEndpoint[Any, zio.Task]][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: List[com.rockthejvm.reviewboard.http.controllers.[1m[32mCompanyController[0m[1m[32m [0m[1m[32m|[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[1m[32m [0m[1m[32m [0m[1m[32mcom[0m[1m[32m.[0m[1m[32mrockthejvm[0m[1m[32m.[0m[1m[32mreviewboard[0m[1m[32m.[0m[1m[32mhttp[0m[1m[32m.[0m[1m[32mcontrollers[0m[1m[32m.[0m[1m[32mReviewController[0m] =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  List[sttp.tapir.server.ServerEndpoint[Any, zio.Task]][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might make progress towards fixing the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import io.getquill.autoQuote[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

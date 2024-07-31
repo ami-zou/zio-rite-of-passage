@@ -1,5 +1,5 @@
 package com.rockthejvm.reviewboard.http.controllers
 
-class HealthController {
+import com.rockthejvm.reviewboard.http.endpoints.HealthEndpoint
 
-}
+class HealthController extends BaseController with HealthEndpoint {}

@@ -4,13 +4,20 @@ import com.rockthejvm.reviewboard.domain.data.*
 import com.rockthejvm.reviewboard.http.requests.*
 import com.rockthejvm.reviewboard.services.*
 import com.rockthejvm.reviewboard.syntax.*
+import sttp.client3.*
 import sttp.client3.testing.*
 import sttp.monad.*
+import sttp.tapir.EndpointIO.annotations.basic
+import sttp.tapir.generic.auto.*
+import sttp.tapir.json.zio.*
 import sttp.tapir.server.*
 import sttp.tapir.server.stub.*
 import sttp.tapir.ztapir.*
-import zio.{Scope, Task}
-import zio.test.{Spec, TestEnvironment, ZIOSpecDefault}
+import zio.*
+import zio.json.*
+import zio.test.*
+
+import java.time.Instant
 
 object CompanyControllerSpec extends ZIOSpecDefault {
   private given zioME: MonadError[Task] = new RIOMonadError[Any]
@@ -25,11 +32,11 @@ object CompanyControllerSpec extends ZIOSpecDefault {
       )
     } yield backendStub
 
-  override def spec: Spec[TestEnvironment with Scope, Any] =
-    suite("CompanyControllerSpec")(
-      test("post company") {
-        //
-      }
-    )
+  override def spec: Spec[TestEnvironment with Scope, Any] = ???
+//    suite("CompanyControllerSpec")(
+//      test("post company") {
+//        //
+//      }
+//    )
 
 }

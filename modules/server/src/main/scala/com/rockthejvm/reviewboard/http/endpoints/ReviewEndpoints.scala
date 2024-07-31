@@ -32,7 +32,7 @@ trait ReviewEndpoints {
       .tag("review")
       .name("getByCompanyId")
       .description("get a review by companyID")
-      .in("reviews" / path[Long]("id"))
+      .in("reviews" / "company" / path[Long]("id"))
       .get
       .out(jsonBody[List[Review]])
 
@@ -41,7 +41,7 @@ trait ReviewEndpoints {
       .tag("review")
       .name("getByUserId")
       .description("get a review by userId")
-      .in("reviews" / path[Long]("id"))
+      .in("reviews" / "user" / path[Long]("id"))
       .get
       .out(jsonBody[List[Review]])
 }

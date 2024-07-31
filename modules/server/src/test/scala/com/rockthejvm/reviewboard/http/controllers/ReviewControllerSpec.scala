@@ -7,12 +7,14 @@ import com.rockthejvm.reviewboard.syntax.*
 import sttp.client3.*
 import sttp.client3.testing.*
 import sttp.monad.*
+import sttp.tapir.EndpointIO.annotations.basic
 import sttp.tapir.generic.auto.*
 import sttp.tapir.json.zio.*
 import sttp.tapir.server.*
 import sttp.tapir.server.stub.*
 import sttp.tapir.ztapir.*
 import zio.*
+import zio.json.*
 import zio.test.*
 
 import java.time.Instant
@@ -70,7 +72,7 @@ object ReviewControllerSpec extends ZIOSpecDefault {
         val program = for {
           backendStub <- backendStubZIO(_.create)
           response <- basicRequest
-            .post(uri"/reviews")
+            .post(uri"reviews")
             .body(
               CreateReviewRequest(
                 companyId = 1L,
@@ -84,6 +86,46 @@ object ReviewControllerSpec extends ZIOSpecDefault {
             )
             .send(backendStub)
         } yield response.body
+
+        program.assert(
+          _.toOption // Option[String]
+            .flatMap(_.fromJson[Review].toOption)
+            .contains(goodReview)
+        )
+      },
+      test("get by id") {
+        for {
+          backendStub <- backendStubZIO(_.getById)
+          response <- basicRequest
+            .get(uri"reviews/1")
+            .send(backendStub)
+          responseNotFound <- basicRequest
+            .get(uri"reviews/999")
+            .send(backendStub)
+        } yield assertTrue(
+          response.body.toOption
+            .flatMap(_.fromJson[Review].toOption)
+            .contains(goodReview) &&
+            responseNotFound.body.toOption.flatMap(_.fromJson[Review].toOption).isEmpty
+        )
+      },
+      test("get by company id") {
+        for {
+          backendStub <- backendStubZIO(_.getByCompanyId)
+          response <- basicRequest
+            .get(uri"reviews/company/1")
+            .send(backendStub)
+          responseNotFound <- basicRequest
+            .get(uri"reviews/company/999")
+            .send(backendStub)
+        } yield assertTrue(
+          response.body.toOption
+            .flatMap(_.fromJson[List[Review]].toOption)
+            .contains(List(goodReview)) &&
+            responseNotFound.body.toOption
+              .flatMap(_.fromJson[List[Review]].toOption)
+              .contains(List())
+        )
       }
-    )
+    ).provide(ZLayer.succeed(serviceStub))
 }
