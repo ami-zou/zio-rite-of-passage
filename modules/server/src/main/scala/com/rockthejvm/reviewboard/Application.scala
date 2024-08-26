@@ -1,6 +1,8 @@
 package com.rockthejvm.reviewboard
 
-import com.rockthejvm.reviewboard.http.controllers.*
+import com.rockthejvm.reviewboard.http.HttpApi
+import com.rockthejvm.reviewboard.repositories.*
+import com.rockthejvm.reviewboard.services.*
 import sttp.tapir.*
 import sttp.tapir.server.ziohttp.*
 import zio.*
@@ -9,17 +11,22 @@ import zio.http.Server
 object Application extends ZIOAppDefault {
 
   val serverProgram = for {
-    controller <- HealthController.makeZIO
+    endpoints <- HttpApi.endpointsZIO
     _ <- Server.serve(
       ZioHttpInterpreter(
         ZioHttpServerOptions.default
-      ).toHttp(controller.health)
+      ).toHttp(endpoints)
     )
     _ <- Console.print("Server successfully started")
   } yield ()
 
-  override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] =
+  override def run =
     serverProgram.provide(
-      Server.default
+      Server.default,
+      CompanyServiceLive.layer,
+      CompanyRepositoryLive.layer,
+      ReviewServiceLive.layer,
+      ReviewRepositoryLive.layer,
+      Repository.dataLayer
     )
 }

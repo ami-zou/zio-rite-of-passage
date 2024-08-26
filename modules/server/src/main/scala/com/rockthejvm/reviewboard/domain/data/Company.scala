@@ -19,8 +19,8 @@ object Company {
 
   def makeSlug(name: String): String =
     name
-      .toLowerCase()
-      .trim
       .replaceAll(" +", " ")
-      .replaceAll(" ", "-")
+      .split(" ")
+      .map(_.toLowerCase())
+      .mkString("-") // "My Company    Inc" -> "my-company-inc"
 }

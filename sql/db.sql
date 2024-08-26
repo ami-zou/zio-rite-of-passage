@@ -1,5 +1,5 @@
-CREATE DATABASE reivewboard;
-\c reivewboard;
+CREATE DATABASE reviewboard;
+\c reviewboard;
 
 CREATE TABLE IF NOT EXISTS companies (
     id BIGSERIAL PRIMARY KEY,

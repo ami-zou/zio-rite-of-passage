@@ -6,8 +6,8 @@ import io.getquill.jdbczio.Quill
 object Repository {
 
   def quillLayer = Quill.Postgres.fromNamingStrategy(SnakeCase)
-  
+
   def dataSourceLayer = Quill.DataSource.fromPrefix("rockthejvm.db")
-  
-  def dataLayer = dataSourceLayer >>> quillLayer
+
+  val dataLayer = dataSourceLayer >>> quillLayer
 }

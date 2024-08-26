@@ -7,8 +7,9 @@ import zio.*
 
 trait CompanyService {
   def create(request: CreateCompanyRequest): Task[Company]
-  def getById(id: String): Task[Option[Company]]
   def getAll(): Task[List[Company]]
+  def getById(id: Long): Task[Option[Company]]
+  def getBySlug(slug: String): Task[Option[Company]]
 }
 
 class CompanyServiceLive private (repo: CompanyRepository) extends CompanyService {
@@ -17,7 +18,9 @@ class CompanyServiceLive private (repo: CompanyRepository) extends CompanyServic
 
   override def getAll(): Task[List[Company]] = repo.getAll()
 
-  override def getById(id: String): Task[Option[Company]] = repo.getById(id)
+  override def getById(id: Long): Task[Option[Company]] = repo.getById(id)
+
+  override def getBySlug(slug: String): Task[Option[Company]] = repo.getBySlug(slug)
 }
 
 object CompanyServiceLive {

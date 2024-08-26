@@ -4,7 +4,6 @@ import com.rockthejvm.reviewboard.domain.data.Company
 import zio.json.*
 
 final case class CreateCompanyRequest(
-    slug: String,
     name: String,
     url: String,
     location: Option[String] = None,
@@ -15,7 +14,7 @@ final case class CreateCompanyRequest(
 ) {
   def toCompany(id: Long) =
     Company(
-      id, 
+      id,
       Company.makeSlug(name),
       name,
       url,
