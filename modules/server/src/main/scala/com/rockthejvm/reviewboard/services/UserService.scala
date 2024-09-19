@@ -1,5 +1,5 @@
 package com.rockthejvm.reviewboard.services
-import com.rockthejvm.reviewboard.domain.data.User
+import com.rockthejvm.reviewboard.domain.data.*
 import com.rockthejvm.reviewboard.repositories.UserRepository
 import zio.*
 
@@ -10,9 +10,11 @@ import javax.crypto.spec.PBEKeySpec
 trait UserService {
   def registerUser(email: String, password: String): Task[User]
   def verifyPassword(email: String, password: String): Task[Boolean]
+  def generateToken(email: String, password: String): Task[Option[UserToken]]
 }
 
-class UserServiceLive private (userRepo: UserRepository) extends UserService {
+class UserServiceLive private (jwtService: JWTService, userRepo: UserRepository)
+    extends UserService {
   override def registerUser(email: String, password: String): Task[User] =
     userRepo.create(
       User(
@@ -31,11 +33,26 @@ class UserServiceLive private (userRepo: UserRepository) extends UserService {
         UserServiceLive.Hasher.validateHash(password, existingUser.hashedPassword)
       )
     } yield result
+
+  override def generateToken(email: String, password: String): Task[Option[UserToken]] = {
+    for {
+      existingUser <- userRepo
+        .getByEmail(email)
+        .someOrFail(new RuntimeException(s"Cannot verify user $email - user not found"))
+      verified <- ZIO.attempt(
+        UserServiceLive.Hasher.validateHash(password, existingUser.hashedPassword)
+      )
+      maybeToken <- jwtService.createToken(existingUser).when(verified)
+    } yield maybeToken
+  }
 }
 
 object UserServiceLive {
   val layer = ZLayer {
-    ZIO.service[UserRepository].map(repo => new UserServiceLive(repo))
+    for {
+      jwtService <- ZIO.service[JWTService]
+      userRepo   <- ZIO.service[UserRepository]
+    } yield new UserServiceLive(jwtService, userRepo)
   }
 
   object Hasher {
